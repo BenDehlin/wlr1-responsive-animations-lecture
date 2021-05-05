@@ -1,8 +1,17 @@
+/* Our main app container will have a display of
+flex with flex-direction of row so that the big blue
+boxes go across the top of our page. */
 .App{
   display: flex;
   justify-content: flex-start;
+  flex-direction: row;
 }
 
+
+/* This is the styling for our big blue boxes. These boxes
+will be 500px by 500px by default. We set up a media query
+down at the bottom to make the boxes get a bit smaller if
+our screen size gets too small. */
 .big-box{
   /* border-radius: 50%; */
   background: blue;
@@ -11,6 +20,17 @@
   margin: 10px;
 }
 
+
+/* The small box in our first of the 3 blue boxes will have
+a height and width of 50% of whatever the blue box is (500px
+by default) with a background color of black. The simple
+transition we have for the first box has the following properties:
+-it applies only to transforms for the box.
+-it will last 1 second
+-rather than a linear/fade-in-out movement function we instead
+defined our own movement function using the tool in chrome
+that allows us to specify how it's supposed to move from
+the beginning to the end. */
 .small-box{
   width: 50%;
   height: 50%;
@@ -18,10 +38,26 @@
   transition: transform 1s cubic-bezier(0, 0, 0.24, 2.02);
 }
 
+
+/* Our on-hover determines the actual transition information
+for the small-box. In this case small-box when it is hovered over
+will go over 100% of the pixels of the element and down 100% of
+the pixels of the element. */
 .small-box:hover{
-  transform: translate(100%, 100%)
+  transform: translate(100%, 100%);
 }
 
+
+/* Our second small-box will also be take up 50% of the width and
+height of the container and be black. This time we identify
+an animation for it to execute. In this case the animation name
+is my-animation which we will define down below in an @keyframes
+called my-animation. This animation will last 5 seconds,
+it will ease in and out each breakpoint in the animation,
+and will repeat forever. We have an animation direction and
+animation fill mode that we commented out because for now this
+animation will just repeat indefinitely so it doesn't need to
+end. */
 .small-box-two{
   width: 50%;
   height:50%;
@@ -34,6 +70,12 @@
   /* animation-fill-mode: forwards; */
 }
 
+
+/* Our third small box will be in the middle of the container, be
+orange, and will slowly spin. By default the animation-play-state
+is running but if you look in Example.js you will notice we apply
+the .pause class to it when it is clicked. This will allow us to
+pause and start our animation any time we click it. */
 .small-box-three{
   position: relative;
   top: 25%;
@@ -48,10 +90,18 @@
   animation-play-state: running;
 }
 
+
+/* the .pause is conditionally applied anytime we click our box.
+This makes it so the animation will pause when we click it and
+start back up when we click it again. */
 .pause{
   animation-play-state: paused;
 }
 
+
+/* This is the spin animation that we applied to our third box.
+It starts at 0 degrees rotated and at the end it will rotate
+180 degrees. */
 @keyframes spin{
   from{
     transform: rotate(0deg);
@@ -61,6 +111,13 @@
   }
 }
 
+/* This is the animation that is applied to our second box. This box
+will start at 0, move to the right, then down, then left, then back
+up. That is the translate part of our transform. At the same time
+it is doing that it is rotating, starting at 0 degrees and completing
+a full circle. ALSO it is turning slowly from a square into a circle
+and then back into a square during the animation. We have 3 total
+animations going on here at the same time. */
 @keyframes my-animation{
   0%{
     transform: translate(0%, 0%) rotate(0deg);
@@ -84,6 +141,11 @@
   }
 }
 
+
+/* This media query makes it so if our screen gets below 1600px
+we will change the height and width of our containers to be 350
+pixels instead of 500. It also changes the background color of our
+first small box to be pink instead. */
 @media(max-width: 1600px){
   .big-box{
     height: 350px;
@@ -94,6 +156,11 @@
   }
 }
 
+
+/* Our second media query simply changes the flex direction of our
+.App class to be a column instead of a row once the screen
+gets below 1100 pixels. We could have had additional media query
+break points but these are the ones we included for now. */
 @media(max-width: 1100px){
   .App{
     flex-direction: column;
