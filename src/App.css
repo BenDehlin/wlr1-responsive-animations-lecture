@@ -1,38 +1,101 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: flex-start;
 }
 
-.App-link {
-  color: #61dafb;
+.big-box{
+  /* border-radius: 50%; */
+  background: blue;
+  height: 500px;
+  width: 500px;
+  margin: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
+.small-box{
+  width: 50%;
+  height: 50%;
+  background: black;
+  transition: transform 1s cubic-bezier(0, 0, 0.24, 2.02);
+}
+
+.small-box:hover{
+  transform: translate(100%, 100%)
+}
+
+.small-box-two{
+  width: 50%;
+  height:50%;
+  background: black;
+  animation-name: my-animation;
+  animation-duration: 5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  /* animation-direction: alternate; */
+  /* animation-fill-mode: forwards; */
+}
+
+.small-box-three{
+  position: relative;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  background: orange;
+  animation-name: spin;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-play-state: running;
+}
+
+.pause{
+  animation-play-state: paused;
+}
+
+@keyframes spin{
+  from{
     transform: rotate(0deg);
   }
-  to {
-    transform: rotate(360deg);
+  to{
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes my-animation{
+  0%{
+    transform: translate(0%, 0%) rotate(0deg);
+    border-radius: 0%;
+  }
+  25%{
+    transform: translate(100%, 0%) rotate(90deg);
+    border-radius: 25%;
+  }
+  50%{
+    transform: translate(100%, 100%) rotate(180deg);
+    border-radius: 50%;
+  }
+  75%{
+    transform: translate(0%, 100%) rotate(270deg);
+    border-radius: 25%;
+  }
+  100%{
+    transform: translate(0%, 0%) rotate(360deg);
+    border-radius: 0%;
+  }
+}
+
+@media(max-width: 1600px){
+  .big-box{
+    height: 350px;
+    width: 350px;
+  }
+  .small-box{
+    background: pink;
+  }
+}
+
+@media(max-width: 1100px){
+  .App{
+    flex-direction: column;
   }
 }
